@@ -5,7 +5,7 @@ const Square = ({ value, onClick }) => {
   return (
     <button
       onClick={onClick}
-      className="w-20 h-20 border-2 border-gray-500 text-2xl font-bold flex items-center justify-center"
+      className="w-24 h-24 bg-white border-4 border-indigo-300 rounded-2xl text-4xl font-extrabold flex items-center justify-center shadow-md hover:bg-indigo-100 transition duration-200"
     >
       {value}
     </button>
@@ -37,8 +37,8 @@ function App() {
 
   const winner = calculateWinner(squares);
   const status = winner
-    ? `Winner: ${winner}`
-    : `Next player: ${xIsNext ? "X" : "O"}`;
+    ? `🎉 Winner: ${winner}`
+    : `Next player: ${xIsNext ? "❌" : "⭕"}`;
 
   const handleClick = (i) => {
     if (squares[i] || winner) return;
@@ -54,18 +54,20 @@ function App() {
   };
 
   return (
-    <div className="flex flex-col items-center gap-4 mt-10">
-      <div className="text-xl font-semibold">{status}</div>
-      <div className="grid grid-cols-3 gap-1">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-200 to-purple-300 flex flex-col items-center justify-center p-4">
+      <div className="text-3xl md:text-4xl font-bold text-indigo-800 mb-6">
+        {status}
+      </div>
+      <div className="grid grid-cols-3 gap-3">
         {squares.map((square, i) => (
           <Square key={i} value={square} onClick={() => handleClick(i)} />
         ))}
       </div>
       <button
         onClick={resetGame}
-        className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-xl shadow-md hover:bg-blue-600"
+        className="mt-8 px-6 py-3 bg-indigo-600 text-white text-lg font-semibold rounded-xl hover:bg-indigo-700 shadow-lg transition duration-300"
       >
-        Reset Game
+        🔄 Reset Game
       </button>
     </div>
   );
